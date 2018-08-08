@@ -1,0 +1,12 @@
+public RedirectToRouteResult RemoveFromCart(Cart cart, int bookId, string returnUrl)
+        {
+            Book book = repository.Books
+                .FirstOrDefault(b => b.BookID == bookId);
+
+            if (book != null)
+            {
+                cart.RemoveLine(book);
+            }
+
+            return RedirectToAction("Index", new { returnUrl });
+        }
